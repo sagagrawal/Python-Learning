@@ -3,9 +3,7 @@ SUCCESS = True
 BUSTED = -2
 LOST = -3
 WIN = 1
-CARD_CATEGORY = ["Hearts", "Spades", "Diamond", "Clubs"]
-INSUFFICIENT_CHIPS = -4
-CARDS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
+INSUFFICIENT_CHIPS = False
 
 
 class Player:
@@ -20,7 +18,7 @@ class Player:
         self.chips_in_hand = initial_chips
 
     def placebet(self, chips):
-        if chips > self.chips_in_hand:
+        if chips > self.chips_in_hand or chips < 500:
             return INSUFFICIENT_CHIPS
         else:
             self.chips_in_hand -= chips
