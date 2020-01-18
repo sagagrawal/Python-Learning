@@ -42,7 +42,7 @@ def print_horizontal_line(cards_drawn):
             print("------    ", end=" ")
 
 
-def print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck):
+def print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player):
 
     # clear_output()
     print("\n****************************************")
@@ -61,24 +61,25 @@ def print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck):
                 print(Fore.GREEN + "HOUSE WINS" + Fore.RESET)
         else:
             print(Fore.RED + "BUSTED" + Fore.RESET)
+            human_player.chips_in_hand += (2*chips_on_bet)
 
-    print("\n")
+    print("")
 
     print(Fore.CYAN + f"\t\t\t\t\tPlayer Total: {player_result}", end=" " + Fore.RESET)
     if not play_status:
         if player_result <= 21:
             if dealer_result < player_result or dealer_result > 21:
                 print(Fore.GREEN + "PLAYER WINS" + Fore.RESET)
+                human_player.chips_in_hand += (2 * chips_on_bet)
         else:
             print(Fore.RED + "BUSTED" + Fore.RESET)
 
     print("")
     print_cards(player_cards_drawn)
 
-    print("****************************************")
-    print(Fore.RED + "\t                                        Chips on Bet:  500" + Fore.RESET)
+    if not play_status:
+        chips_on_bet = " - "
+
+    print("****************************************          " + Fore.RED + f"Chips on Bet: {chips_on_bet}" + Fore.RESET)
     print("                 PLAYER                 ")
-    print(Fore.LIGHTBLUE_EX + "\t                                        Chips in Hand:  1000" + Fore.RESET)
-    print("****************************************")
-
-
+    print("****************************************          " + Fore.BLUE + f"Chips in Hand: {human_player.chips_in_hand}" + Fore.RESET)
