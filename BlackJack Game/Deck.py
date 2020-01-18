@@ -1,12 +1,10 @@
 import random as rd
 
 ERROR_FLAG = -1
-SUCCESS = True
 BUSTED = -2
 LOST = -3
 WIN = 1
 CARD_CATEGORY = ["Hearts", "Spades", "Diamond", "Clubs"]
-INSUFFICIENT_CHIPS = -4
 CARDS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
 
