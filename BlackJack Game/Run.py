@@ -8,6 +8,7 @@ DEALER_BUSTED = -1
 PLAYER_WINS = 2
 PLAYER_BUSTED = -2
 GAME_ON = 3
+PUSH = -3
 play_status = True
 game_deck = Deck()
 player_cards_drawn = []
@@ -34,6 +35,8 @@ def generate_result():
     else:
         return PLAYER_BUSTED
 
+    if dealer_result == player_result:
+        return PUSH
     return GAME_ON
 
 
@@ -90,7 +93,6 @@ def LetsPlay():
                     play_status = False
                     break
             else:
-                play_status = False
                 player_choice = False
 
         if game_result == GAME_ON:
@@ -98,16 +100,30 @@ def LetsPlay():
             time.sleep(5)
             for _ in range(1, count+1):
                 dealer_cards_drawn.append(game_deck.drawcard())
-                print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player)
+                game_result = generate_result()
+                if game_result == GAME_ON:
+                    # clear_output()
+                    print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player)
+                else:
+                    break
 
-            play_status = False
-        # clear_output()
-        print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player)
+        game_result = generate_result()
+        if game_result == PLAYER_WINS or game_result == DEALER_BUSTED:
+            human_player.chips_in_hand += (2*chips_on_bet)
+
+        play_status = False
+        if game_result == PUSH:
+            human_player.chips_in_hand += chips_on_bet
+        else:
+            # clear_output()
+            print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player)
 
         print("Do you wish to play again?(y/n): ")
 
         flag = input().lower() == 'y'
+
     print("Thank you for playing!")
+
 
 if __name__ == '__main__':
     LetsPlay()
