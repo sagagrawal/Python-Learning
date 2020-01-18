@@ -98,12 +98,7 @@ def LetsPlay():
             time.sleep(5)
             for _ in range(1, count+1):
                 dealer_cards_drawn.append(game_deck.drawcard())
-                game_result = generate_result()
-                if game_result == GAME_ON:
-                    # clear_output()
-                    print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player)
-                else:
-                    break
+                print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player)
 
             play_status = False
         # clear_output()
@@ -112,7 +107,7 @@ def LetsPlay():
         print("Do you wish to play again?(y/n): ")
 
         flag = input().lower() == 'y'
-
+    print("Thank you for playing!")
 
 if __name__ == '__main__':
     LetsPlay()
