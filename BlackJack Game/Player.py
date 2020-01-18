@@ -9,13 +9,13 @@ CARDS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
 
 
 class Player:
-    name = "PLAYER"
+    name = ""
     chips_in_hand = 0
     wins = 0
     lost = 0
     busted = 0
 
-    def __init__(self, name, initial_chips):
+    def __init__(self, name="PLAYER", initial_chips=5000):
         self.name = name
         self.chips_in_hand = initial_chips
 
