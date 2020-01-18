@@ -1,0 +1,133 @@
+"C:\Sagar Agrawal(SW-GPU)\Projects\Python\venv\Scripts\python.exe" "C:/Sagar Agrawal(SW-GPU)/Projects/Python/BlackJack Game/Run.py"
+Welcome to BLACK-JACK command line GAME!!
+Initially YOU are given 5000 Chips in Hand for play
+Enter Chips you want to bet(in multiples of 500): 1000
+Drawing 2 cards for PLAYER and 1 card for HOUSE....
+
+****************************************
+                 DEALER                 
+****************************************
+------    
+| C  |    
+|  1 |    
+------    
+					Dealer Total: 11 
+					Player Total: 16 
+------     ------    
+| H  |     | S  |    
+|  6 |     |  Q |    
+------     ------    
+****************************************          Chips on Bet: 1000
+                 PLAYER                 
+****************************************          Chips in Hand: 4000
+
+1. Hit
+2. Stay
+Input your Choice(input 1 or 2): 
+2
+Now, Drawing cards for HOUSE....
+
+****************************************
+                 DEALER                 
+****************************************
+------     ------    
+| C  |     | D  |    
+|  1 |     |  Q |    
+------     ------    
+					Dealer Total: 21 
+					Player Total: 16 
+------     ------    
+| H  |     | S  |    
+|  6 |     |  Q |    
+------     ------    
+****************************************          Chips on Bet: 1000
+                 PLAYER                 
+****************************************          Chips in Hand: 4000
+
+****************************************
+                 DEALER                 
+****************************************
+------     ------    
+| C  |     | D  |    
+|  1 |     |  Q |    
+------     ------    
+					Dealer Total: 21 HOUSE WINS
+
+					Player Total: 16 
+------     ------    
+| H  |     | S  |    
+|  6 |     |  Q |    
+------     ------    
+****************************************          Chips on Bet:  - 
+                 PLAYER                 
+****************************************          Chips in Hand: 4000
+Do you wish to play again?(y/n): 
+y
+Enter Chips you want to bet(in multiples of 500): 2000
+Drawing 2 cards for PLAYER and 1 card for HOUSE....
+
+****************************************
+                 DEALER                 
+****************************************
+------    
+| D  |    
+|  8 |    
+------    
+					Dealer Total: 8 
+					Player Total: 20 
+------     ------    
+| D  |     | D  |    
+| 10 |    
+|  K |    
+------     ------    
+****************************************          Chips on Bet: 2000
+                 PLAYER                 
+****************************************          Chips in Hand: 2000
+
+1. Hit
+2. Stay
+Input your Choice(input 1 or 2): 
+2
+Now, Drawing cards for HOUSE....
+
+****************************************
+                 DEALER                 
+****************************************
+------     ------    
+| D  |     | H  |    
+|  8 |     | 10 |    
+------     ------    
+					Dealer Total: 18 
+					Player Total: 20 
+------     ------    
+| D  |     | D  |    
+| 10 |    
+|  K |    
+------     ------    
+****************************************          Chips on Bet: 2000
+                 PLAYER                 
+****************************************          Chips in Hand: 2000
+
+****************************************
+                 DEALER                 
+****************************************
+------     ------    
+| D  |     | H  |    
+|  8 |     | 10 |    
+------     ------    
+					Dealer Total: 18 
+					Player Total: 20 PLAYER WINS
+
+------     ------    
+| D  |     | D  |    
+| 10 |    
+|  K |    
+------     ------    
+****************************************          Chips on Bet:  - 
+                 PLAYER                 
+****************************************          Chips in Hand: 6000
+Do you wish to play again?(y/n): 
+n
+Thank you for playing!
+
+Process finished with exit code 0
