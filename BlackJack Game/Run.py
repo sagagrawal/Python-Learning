@@ -1,8 +1,7 @@
 from PrintHelper import print_table
 import time
 from Deck import Deck
-from colorama import Fore
-from colorama import init
+from Player import Player
 
 DEALER_WINS = 1
 DEALER_BUSTED = -1
@@ -13,8 +12,6 @@ play_status = True
 game_deck = Deck()
 player_cards_drawn = []
 dealer_cards_drawn = []
-
-init()
 
 
 def generate_result():
@@ -46,11 +43,28 @@ def LetsPlay():
     global dealer_cards_drawn
     global game_deck
     flag = True
-    game_result = GAME_ON
+    human_player = Player()
+
+    # clear_output()
+    print("Welcome to BLACK-JACK command line GAME!!")
+    print("Initially YOU are given 5000 Chips in Hand for play")
 
     while flag:
-        # clear_output()
-        print("Welcome to BLACK-JACK command line GAME!!")
+        chips_on_bet = 0
+        play_status = True
+        game_deck = Deck()
+        player_cards_drawn = []
+        dealer_cards_drawn = []
+        game_result = GAME_ON
+
+        while True:
+            chips_on_bet = input("Enter Chips you want to bet(in multiples of 500): ")
+            if chips_on_bet.isnumeric() and human_player.placebet(int(chips_on_bet)):
+                chips_on_bet = int(chips_on_bet)
+                break
+            else:
+                print("Invalid input, please Try Again (Bet can't be greater than Chips in Hand)")
+
         print("Drawing 2 cards for PLAYER and 1 card for HOUSE....")
         time.sleep(3)
 
@@ -59,7 +73,7 @@ def LetsPlay():
 
         dealer_cards_drawn.append(game_deck.drawcard())
 
-        print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck)
+        print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player)
 
         player_choice = True
         count = 1
@@ -70,7 +84,7 @@ def LetsPlay():
                 game_result = generate_result()
                 if game_result == GAME_ON:
                     # clear_output()
-                    print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck)
+                    print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player)
                     count += 1
                 else:
                     play_status = False
@@ -84,14 +98,20 @@ def LetsPlay():
             time.sleep(5)
             for _ in range(1, count+1):
                 dealer_cards_drawn.append(game_deck.drawcard())
-                # clear_output()
-                print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck)
+                game_result = generate_result()
+                if game_result == GAME_ON:
+                    # clear_output()
+                    print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player)
+                else:
+                    break
 
             play_status = False
         # clear_output()
-        print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck)
+        print_table(play_status, dealer_cards_drawn, player_cards_drawn, game_deck, chips_on_bet, human_player)
 
-        flag = False
+        print("Do you wish to play again?(y/n): ")
+
+        flag = input().lower() == 'y'
 
 
 if __name__ == '__main__':
