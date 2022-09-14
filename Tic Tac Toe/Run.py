@@ -6,6 +6,7 @@ POSITIONAL_BOARD = ["1", "2", "3",
                     "4", "5", "6",
                     "7", "8", "9"]
 whoseturn = True
+User_Board = None
 
 
 def print_board(board=POSITIONAL_BOARD):
@@ -44,23 +45,32 @@ def check_play_status():
     return not (User_Board.count('O') + User_Board.count('X')) == 9
 
 
-def check_game_result():
-    if User_Board[0] == User_Board[1] == User_Board[2]:
-        return User_Board[0]
-    elif User_Board[3] == User_Board[4] == User_Board[5]:
-        return User_Board[3]
-    elif User_Board[6] == User_Board[7] == User_Board[8]:
-        return User_Board[6]
-    elif User_Board[0] == User_Board[3] == User_Board[6]:
-        return User_Board[0]
-    elif User_Board[1] == User_Board[4] == User_Board[7]:
-        return User_Board[1]
-    elif User_Board[2] == User_Board[5] == User_Board[8]:
-        return User_Board[2]
-    elif User_Board[0] == User_Board[4] == User_Board[8]:
-        return User_Board[0]
-    elif User_Board[2] == User_Board[4] == User_Board[6]:
-        return User_Board[2]
+def get_winner():
+    if check_game_result('X') == 'X':
+        return 'X'
+    elif check_game_result('O') == 'O':
+        return 'O'
+    else:
+        return False
+
+
+def check_game_result(ticker):
+    if User_Board[0] == User_Board[1] == User_Board[2] == ticker:
+        return ticker
+    elif User_Board[3] == User_Board[4] == User_Board[5] == ticker:
+        return ticker
+    elif User_Board[6] == User_Board[7] == User_Board[8] == ticker:
+        return ticker
+    elif User_Board[0] == User_Board[3] == User_Board[6] == ticker:
+        return ticker
+    elif User_Board[1] == User_Board[4] == User_Board[7] == ticker:
+        return ticker
+    elif User_Board[2] == User_Board[5] == User_Board[8] == ticker:
+        return ticker
+    elif User_Board[0] == User_Board[4] == User_Board[8] == ticker:
+        return ticker
+    elif User_Board[2] == User_Board[4] == User_Board[6] == ticker:
+        return ticker
     else:
         return False
 
@@ -76,6 +86,7 @@ def select_player_randomly():
 
 
 while True:
+
     User_Board = list("         ")
     clear_output()
     print("Welcome to Tic Tac Toe Game")
@@ -85,7 +96,7 @@ while True:
     print("Refer below Board to input the position you wish to place your key at, during your turn to PLAY!!!")
     print_board()
 
-    while check_play_status():
+    while check_game_result('X') is False and check_game_result('O') is False:
         choice = -1
         if whoseturn:
             choice = input_from_user('X')
@@ -99,7 +110,7 @@ while True:
         clear_output()
         print_board(User_Board)
 
-    result = check_game_result()
+    result = get_winner()
     if type(result) == bool:
         print("GAME DRAW! Try Again")
     else:
